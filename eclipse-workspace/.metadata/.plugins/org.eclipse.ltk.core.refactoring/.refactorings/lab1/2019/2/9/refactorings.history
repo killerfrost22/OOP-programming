@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;FlagMaker.java&apos; to &apos;NewStart/src/CMSC131labs&apos;&#x0D;&#x0A;- Original project: &apos;lab1&apos;&#x0D;&#x0A;- Destination element: &apos;NewStart/src/CMSC131labs&apos;&#x0D;&#x0A;- Original element: &apos;FlagMaker.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move file" destination="=NewStart/src&lt;CMSC131labs" element1="FlagMaker.java" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1551244760817" units="0" version="1.0"/>
+</session>

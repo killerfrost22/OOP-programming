@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 3 elements to &apos;Blackjack/src/blackjack&apos;&#x0D;&#x0A;- Original project: &apos;test101&apos;&#x0D;&#x0A;- Destination element: &apos;Blackjack/src/blackjack&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     blackjack.bj2.java&#x0D;&#x0A;     blackjack.bj4.java&#x0D;&#x0A;     blackjack.bj3.java&#x0D;&#x0A;- Update references to refactored element" description="Move compilation units" destination="=Blackjack/src&lt;blackjack" element1="/src&lt;blackjack{bj2.java" element2="/src&lt;blackjack{bj4.java" element3="/src&lt;blackjack{bj3.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1568254598354" units="3" version="1.0"/>
+</session>

@@ -1,0 +1,13 @@
+package employeeManager;
+
+public class Manager {
+
+  public static Company createAccount(String name) {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public static Company createAccount(String name, int maxEmployees) {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+}

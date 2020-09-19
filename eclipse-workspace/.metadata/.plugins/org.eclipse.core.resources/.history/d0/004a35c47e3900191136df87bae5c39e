@@ -1,0 +1,18 @@
+package studentV2;
+
+public class Student {
+	public String name; /* non-static variable */
+	public static double MAX_GPA = 4.0; /* static variables usually in uppercase */
+	
+	
+	public static int dadasd = 4;
+	/* Non-static method */
+	public void initName() {
+		name = "Mary";
+	}
+
+	/* Static method */
+	public static void printSchoolName() {
+		System.out.println("Infinite Loop High School");
+	}
+}

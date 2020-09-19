@@ -1,0 +1,301 @@
+package employeeManager;
+
+public class Company {
+	String name,firstName,lastName; 
+	int maxEmployee;
+	int EmCount = 0;
+	int EmCapacity ;
+	Employee[] EmList = new Employee[10];
+	boolean testAccount = false;
+	
+  public Company(String name) {
+	  this.name = name; 
+	  this.testAccount = true; //free of max
+	}
+  
+  public Company(String name, int maxEmployees) {
+	  this.name = name;
+	  this.maxEmployee = maxEmployees;
+	  testAccount = false;
+  }
+
+public String getCompanyName() {
+    return this.name;
+  }
+
+  public boolean hireCommissionedEmployee(String firstName, String lastName,
+                                          double commissionRate) {
+	 if (firstName == "" ||	firstName == ""||commissionRate<=0||commissionRate>=100) {
+			return false;
+	 }if(findEm(firstName, lastName) != null) {
+			return false;  
+		} else {
+			Employee a = new commissioned(firstName, lastName, commissionRate);
+			if (EmCount < maxEmployee||testAccount == true) {
+				// store to TA array
+				// TA count ++
+				EmList[EmCount++] = a;
+				return true; 
+			} 
+		}
+	return false;
+  }
+
+  public boolean hireSalariedEmployee(String firstName, String lastName,
+                                      double yearlySalary) {
+//	boolean test = false;
+	  if (firstName == "" ||firstName == "" || yearlySalary <= 0 ) {
+		  return false;  
+	  } if(findEm(firstName, lastName) != null) {
+		return false;  
+	  }else {
+		  Employee a = new salaried(firstName, lastName, yearlySalary);
+			if (EmCount < maxEmployee&&testAccount ==false) {
+				EmList[EmCount++] = a;
+//				System.out.println(EmCount);
+				return true; 
+			}else { 
+				return false;
+			}
+	}
+	
+}
+  
+ 
+  private Employee findEm(String firstName, String lastName) {
+	  if (EmCount == 0) {
+		//no Employee
+			return null;
+		} else {
+			for (int i = 0; i < EmCount; i++) {
+				if (firstName.equals(EmList[i].firstName) 
+						&& lastName.equals(EmList[i].lastName)) {
+					// name found
+					return EmList[i];
+				}
+			}
+		}
+		return null;
+		// name not found
+}
+//  private boolean checkName(String firstName, String lastName, double salaryInput) {
+//	  boolean test = false; 
+////	 for (Manager e : EmList) {// for each elemet in the InQ ArrayList
+////			if (e.firstName.equalsIgnoreCase(firstName)
+////					||e.lastName.equalsIgnoreCase(lastName)) {
+//	  for(int i = 0; i < EmList.length; i++) {
+//		if (firstName.equalsIgnoreCase(EmList[i].firstName) 
+//				&& lastName.equalsIgnoreCase(EmList[i].lastName)) {
+//			test = true;
+//		}else {
+//			test = false;
+//		}
+//	}
+//		return test;
+//}
+
+public int numEmployees() {
+//	int number = EmList.length;	
+	 return	this.EmCount;
+  }
+
+  public int employeeCapacity() {
+	 if(testAccount = false) {
+		 return Integer.MAX_VALUE;
+	 }else {
+		 return this.maxEmployee;
+	 }
+  }
+
+  public String[] getEmployeeNames() {
+	  for (int i = 0; i < this.EmCount; i++) {
+			for (int j = 0; j < this.EmCount - 1 - i; j++) {
+				if (EmList[j].compare(EmList[j + 1]) < 0) {
+					// need to exchange
+					Employee temp = EmList[j];
+					EmList[j] = EmList[j + 1];
+					EmList[j + 1] = temp;
+				}
+			}
+		}
+		// create a new String[]
+		String[] result = new String[EmCount];
+		// pass the value of name in new form into Sting[]
+		for (int i = 0; i < this.EmCount; i++) {
+			result[i] = EmList[i].firstName +" "+ EmList[i].lastName; 
+//			System.out.println(result[i]);
+		}
+
+		return result;
+}
+
+  public boolean workHours(String firstName, String lastName, int numHours) {
+	  if (firstName == "" || firstName == null) {
+			return false;
+		}
+		if (lastName == "" || lastName == null) {
+			return false;
+		}
+		if (numHours <= 0) {
+			return false;
+		}
+
+		// find the Employee
+		Employee a = findEm(firstName, lastName);
+		// Distinguish the type of Employee
+
+		if (a == null) {
+			//not existing for the employeee
+			return false;
+		} else {
+			if (a.hire.equals("salaried")) {
+				salaried b = (salaried) a;
+				b.workCount += numHours;
+				b.offCount += numHours;
+				return true;
+			} else {
+				commissioned b = (commissioned) a;
+				if (b.workLimit < b.workCount + numHours) {
+					return false;
+				} else {
+					// if not update the offCount and workCount
+					b.offCount += numHours;
+					b.workCount += numHours;
+					// return true
+					return true;
+				}
+
+			}
+		}
+  }
+
+  public int numHours(String firstName, String lastName) {
+	  if (firstName == "" || firstName == null) {
+			return -1;
+		}
+		if (lastName == "" || lastName == null) {
+			return -1;
+		}
+
+		Employee a = findEm(firstName, lastName);
+
+		if (a == null) {
+			return -1;
+		} else {
+			return (int) a.workCount;
+		}
+  }
+
+  public boolean makeSale(String firstName, String lastName, double saleAmt) {
+	  if (firstName == "" || firstName == null) {
+			return false;
+		}
+		if (lastName == "" || lastName == null) {
+			return false;
+		}
+		if (saleAmt <= 0 || saleAmt % 2 != 0) {
+			return false;
+		}
+
+		// find the TA
+		Employee a = findEm(firstName, lastName);
+		// distingusih the type of TA
+		if (a == null) {
+			// TA not exist
+			return false;
+		} else {
+			if (a.hireType.equals("Gra")) {
+				// downcast
+				salaried b = (salaried) a;
+				// for salaried
+				// check the limit of NO of exam graded
+				if (b.examCount + saleAmt > b.examLimit) {
+					// if over limit
+					// return false
+					return false;
+				} else {
+					// update examCount and workCount
+					b.examCount += saleAmt;
+					b.workCount += b.gradeTime(saleAmt);
+					// return true
+					return true;
+				}
+			} else {
+				// downcast
+				commissioned b = (commissioned) a;
+				// for ungra
+				// compare to the worklimit(in sub)
+				if (b.gradeTime(saleAmt) + b.workCount > 20) {
+					// if pass
+					// return false
+					return false;
+				} else {
+					// if true update the examCount and workCount
+					b.examCount += saleAmt;
+					b.workCount += b.gradeTime(saleAmt);
+					// return true
+					return true;
+				}
+
+			}
+		}
+  }
+
+  public double amtSalesMade(String firstName, String lastName) {
+	  if (firstName == "" || firstName == null) {
+			return -1;
+		}
+		if (lastName == "" || lastName == null) {
+			return -1;
+		}
+
+		Employee a = findEm(firstName, lastName);
+
+		if (a == null) {
+			// TA not exist
+			return -1;
+		} else {
+			return a.examCount;
+		}
+  }
+
+  public double getPaycheckAmount(String firstName, String lastName) {
+	  if (firstName == "" || firstName == null) {
+			return 0.0;
+		}
+		if (lastName == "" || lastName == null) {
+			return 0.0;
+		}
+
+		Employee a = findEm(firstName, lastName);
+		if (a == null) {
+			return 0.0;
+		} else {
+			// distinguish the ungra and gra
+			if (a.hireType.equals("salaried")) {
+				// downcast
+				salaried b = (salaried) a;
+				// use different getSalary
+				return b.getSalary();
+			} else {
+				// downcast
+				commissioned b = (commissioned) a;
+				// use different getSalary
+				return b.getSalary();
+			}
+		}
+  }
+
+  public double getPayroll() {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public void newPayPeriod() {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public double billAmount() {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move package &apos;examples&apos; to &apos;AfterSpringBreak/src&apos;&#x0D;&#x0A;- Original project: &apos;ArraysIntroCode&apos;&#x0D;&#x0A;- Destination element: &apos;AfterSpringBreak/src&apos;&#x0D;&#x0A;- Original element: &apos;ArraysIntroCode/src/examples&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move package" destination="=AfterSpringBreak/src" element1="/src&lt;examples" flags="589830" fragments="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1553711226724" version="1.0"/>
+</session>

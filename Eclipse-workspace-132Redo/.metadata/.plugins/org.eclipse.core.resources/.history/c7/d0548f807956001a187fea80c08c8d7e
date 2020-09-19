@@ -1,0 +1,63 @@
+package employeeManager;
+
+public class Company {
+
+  public String getCompanyName() {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public boolean hireCommissionedEmployee(String firstName, String lastName,
+                                          double commissionRate) {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public boolean hireSalariedEmployee(String firstName, String lastName,
+                                      double yearlySalary) {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public int numEmployees() {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public int employeeCapacity() {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public String[] getEmployeeNames() {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public boolean workHours(String firstName, String lastName, int numHours) {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public int numHours(String firstName, String lastName) {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public boolean makeSale(String firstName, String lastName, double saleAmt) {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public double amtSalesMade(String firstName, String lastName) {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public double getPaycheckAmount(String firstName, String lastName) {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public double getPayroll() {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public void newPayPeriod() {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public double billAmount() {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+}

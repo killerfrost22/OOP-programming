@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="D:\敖怡展\UMD\CMSC132\ChengCMSC132\pj3"/>
+		<item value="C:\Users\josep\Desktop\CMSC132\ChengCMSC132\PRO8"/>
+		<item value="C:\Users\josep\Desktop\CMSC132\ChengCMSC132\proj9"/>
+		<item value="C:\Users\josep\Desktop\CMSC132\ChengCMSC132\proj8"/>
+		<item value="C:\Users\josep\Desktop\CMSC132\ChengCMSC132\proj7"/>
+		<item value="C:\Users\josep\Desktop\CMSC132\ChengCMSC132\pj5"/>
+		<item value="C:\Users\josep\Desktop\CMSC132\ChengCMSC132\pj4"/>
+		<item value="C:\Users\josep\Desktop\CMSC132\ChengCMSC132\proj6有点问题"/>
+		<item value="C:\Users\josep\Desktop\CMSC132\TimeStrCode"/>
+		<item value="C:\Users\josep\Desktop\CMSC132\DebuggerExampleCode"/>
+		<item value="C:\Users\josep\Desktop\CMSC132\AlgorithmicComplexityICode"/>
+		<item value="C:\Users\josep\Desktop\CMSC132\LambdaExpressionsCode"/>
+		<item value="C:\Users\josep\Desktop\CMSC132\ClearCellGame"/>
+		<item value="C:\Users\josep\Desktop\InheritanceTwoCode"/>
+		<item value="C:\Users\josep\Desktop\InheritanceThreeCode"/>
+		<item value="C:\Users\josep\Desktop\Debugging"/>
+		<item value="C:\Users\josep\Desktop\JavaConstructsICode"/>
+		<item value="C:\Users\josep\Desktop\OOPAbstractionCode"/>
+		<item value="C:\Users\josep\Desktop\Blackjack"/>
+		<item value="C:\Users\josep\Desktop\Review"/>
+	</list>
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.ui.wizards.new.project"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+	</section>
+	<section name="BasicNewProjectResourceWizard">
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="489"/>
+		<item key="DIALOG_Y_ORIGIN" value="256"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="ExternalProjectImportWizard">
+	</section>
+</section>

@@ -1,0 +1,265 @@
+package polymorphicTree;
+
+//Haoyu Cheng
+//CMSC132
+
+import java.util.List;
+
+public class NonEmptyTree<K extends Comparable<K>, V> extends Tree<K, V> {
+
+	// init the key and value;
+	K key;
+	V value;
+	// init the fields of tree
+	Tree<K, V> leftNode;
+	Tree<K, V> rightNode;
+	// root/leaf
+	NonEmptyTree<K, V> root;
+	EmptyTree<K, V> leaf;
+
+	// constructor for NonEmptyTree
+	// init root reference
+	public NonEmptyTree(K key, V value, Tree<K, V> leftNode, Tree<K, V> rightNode) {
+		this.key = key;
+		this.value = value;
+		this.leftNode = leftNode;
+		this.rightNode = rightNode;
+
+	}
+
+	// pass root reference
+	public NonEmptyTree(K key, V value, Tree<K, V> leftNode, Tree<K, V> rightNode, NonEmptyTree<K, V> root, EmptyTree<K, V> leaf) {
+		this.key = key;
+		this.value = value;
+		this.leftNode = leftNode;
+		this.rightNode = rightNode;
+		this.root = root;
+		this.leaf = leaf;
+	}
+
+	public NonEmptyTree<K, V> addKeyAndValue(K keyIn, V valueIn) {
+		// add a new NonEmptyTree node into the BST
+		// throw exception if there is null in param
+
+		// check for null
+		// throws IllegalArgumentException
+		if (keyIn == null || valueIn == null) {
+			throw new IllegalArgumentException();
+		} else {
+			// valid input
+			// iterate by pre-order
+			// check by key
+
+			if (this.key.compareTo(keyIn) == 0) {
+				// replace current
+				this.value = valueIn;
+			} else if (this.key.compareTo(keyIn) > 0) {
+				// insert in the left side
+				if (this.leftNode instanceof EmptyTree) {
+					// reach the leaf
+					this.leftNode = new NonEmptyTree<K, V>(keyIn, valueIn, this.leaf, this.leaf, this.root, this.leaf);
+				} else {
+					this.leftNode.addKeyAndValue(keyIn, valueIn);
+				}
+			} else {
+				//this.key.compareTo(keyIn) < 0
+				// insert in the right side
+				if (this.rightNode instanceof EmptyTree) {
+					// reach the leaf
+					this.rightNode = new NonEmptyTree<K, V>(keyIn, valueIn, this.leaf, this.leaf, this.root, this.leaf);
+				} else {
+					this.rightNode.addKeyAndValue(keyIn, valueIn);
+				}
+			}
+
+		}
+		return this.root;
+	}
+
+	public int size() {
+		// get the size of the tree
+		// use iteration here
+		// with the pre-order method
+		return 1 + this.leftNode.size() + this.rightNode.size();
+	}
+
+	public V getValueForKey(K keyIn) throws IllegalArgumentException {
+		// get the paired value for the key in the param
+
+		// check for null first
+		if (keyIn == null) {
+			throw new IllegalArgumentException();
+		} else {
+			// search through the tree
+			// use the pre-order method
+			if (this.key.compareTo(keyIn) == 0) {
+				// current
+				return this.value;
+			} else if (this.key.compareTo(keyIn) > 0) {
+				// in the left sub tree
+				return this.leftNode.getValueForKey(keyIn);
+			} else {
+				// in the right sub tree
+				return this.rightNode.getValueForKey(keyIn);
+			}
+		}
+	}
+
+	public int treeHeight() {
+		// get the height of the current BST
+		// init for the left/right sub tree
+		int left, right;
+
+		// get sub trees' height
+		left = this.leftNode.treeHeight();
+		right = this.rightNode.treeHeight();
+
+		// return the larger one
+		if (left >= right) {
+			return left + 1;
+		} else {
+			return right + 1;
+		}
+
+	}
+
+	public boolean pathFromRoot(K keyIn, List<K> keyPath) {
+		// return the path from the root to the key
+		// throws exception when
+		// null existed in the parameter
+		if (keyIn == null || keyPath == null) {
+			throw new IllegalArgumentException();
+		} else {
+			// clear the list
+			keyPath.clear();
+			// find the key
+			if (keyIn.compareTo(this.key) == 0) {
+				// current
+				keyPath.add(this.key);
+				return true;
+			} else if (keyIn.compareTo(this.key) > 0) {
+				// in the right sub tree
+				keyPath.add(this.key);
+				return this.rightNode.pathFromRoot(keyIn, keyPath);
+			} else {
+				// in the left sub tree
+				keyPath.add(this.key);
+				return this.leftNode.pathFromRoot(keyIn, keyPath);
+			}
+		}
+	}
+
+	public K max() throws EmptyTreeException {
+		// get the max key in the BST
+
+		try {
+			// reach the last node on the right
+			return this.rightNode.max();
+		} catch (EmptyTreeException e) {
+			// get the key of the node
+			// before the EmptyTree node
+			return this.key;
+		}
+	}
+
+	public K min() throws EmptyTreeException {
+		// get the min key in the BST
+
+		try {
+			// reach the last node on the left
+			return this.leftNode.min();
+		} catch (EmptyTreeException e) {
+			// get the key of the node
+			// before the EmptyTree node
+			return this.key;
+		}
+	}
+
+	@SuppressWarnings("finally")
+	public Tree<K, V> removeKeyAndValue(K keyIn) {
+		// remove the key and its paired value from the BST
+		// throws exception when
+		// null existed in the parameter
+		if (keyIn == null) {
+			throw new IllegalArgumentException();
+		} else {
+			// find by the key
+			Tree<K, V> pairedTree = this.getTreeForKey(keyIn);
+			// replace the tree node
+			try {
+				pairedTree = ((NonEmptyTree<K, V>) pairedTree).replace();
+			} catch (EmptyTreeException e) {
+			} finally {
+				return this;
+			}
+		}
+
+	}
+
+	@Override
+	public String toString() {
+		// use in-order method to get the string
+		return this.leftNode.toString() + this.key + "=>" + this.value + " "+ this.rightNode.toString();
+	}
+
+	// private method to replace and remove
+
+	private Tree<K, V> replace() throws EmptyTreeException {
+		// return the current node with
+		// the leftmost node in the right sub tree
+		// and then remove the return node from the leaf
+		// or just remove it if it is leaf and return EmptyTree node
+
+		// if leaf
+		if (this.leftNode instanceof EmptyTree && this.rightNode instanceof EmptyTree) {
+			// remove by point to EmptyTree node
+			return this.rightNode;
+		} else {
+			// find the leftmost node in the right sub tree
+			K tempK = this.rightNode.min();
+			V tempV = this.getValueForKey(tempK);
+			// remove the found one
+			Tree<K, V> pointer = this.rightNode;
+			if (pointer.leftNode instanceof EmptyTree && pointer.rightNode instanceof EmptyTree) {
+				// pointer is leaf
+				this.rightNode = this.rightNode.leftNode;
+			} else {
+				// pointer is not leaf
+				while (!(pointer.leftNode.leftNode instanceof EmptyTree)) {
+					// pointer.leftNode is not the last node
+					pointer = pointer.leftNode;
+				}
+				// reach the leftmost node
+				// point to EmptyTree
+				pointer.leftNode = pointer.leftNode.leftNode;
+			}
+			// update the key and value
+			this.key = tempK;
+			this.value = tempV;
+			return this;
+		}
+	}
+
+	protected Tree<K, V> getTreeForKey(K keyIn) throws IllegalArgumentException {
+		// get the Tree for the key in the param
+
+		// check for null first
+		if (keyIn == null) {
+			throw new IllegalArgumentException();
+		} else {
+			// search through the tree
+			// use the pre-order method
+			if (this.key.compareTo(keyIn) == 0) {
+				// current
+				return this;
+			} else if (this.key.compareTo(keyIn) > 0) {
+				// in the left sub tree
+				return this.leftNode.getTreeForKey(keyIn);
+			} else {
+				// in the right sub tree
+				return this.rightNode.getTreeForKey(keyIn);
+			}
+		}
+	}
+
+}

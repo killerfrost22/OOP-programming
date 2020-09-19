@@ -1,0 +1,12 @@
+package org.junit;
+
+import org.junit.Test;
+
+public class Assert {
+	@Test
+	public void test_Testincreasing() {
+		int x = 5;
+		int y = 19;
+		int z = 100;
+		assertTrue(Utilities.increasing(x, y,z));
+}

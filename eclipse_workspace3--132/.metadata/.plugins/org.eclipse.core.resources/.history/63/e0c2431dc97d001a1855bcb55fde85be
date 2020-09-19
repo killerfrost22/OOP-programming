@@ -1,0 +1,32 @@
+package polymorphicTree;
+
+// (c) Larry Herman, 2019.  You are allowed to use this code yourself, but
+// not to provide it to anyone else.
+
+import java.util.List;
+
+public abstract class Tree<K extends Comparable<K>, V> {
+	K key;
+	V value;
+	Tree<K, V> leftNode;
+	Tree<K, V> rightNode;
+
+	abstract public NonEmptyTree<K, V> addKeyAndValue(K keyIn, V valueIn);
+
+	abstract public int size();
+
+	abstract public V getValueForKey(K keyIn);
+
+	abstract public int treeHeight();
+
+	abstract public boolean pathFromRoot(K keyIn, List<K> keyPath);
+
+	abstract public K max() throws EmptyTreeException;
+
+	abstract public K min() throws EmptyTreeException;
+
+	abstract public Tree<K, V> removeKeyAndValue(K keyIn);
+
+	protected abstract Tree<K, V> getTreeForKey(K keyIn);
+
+}

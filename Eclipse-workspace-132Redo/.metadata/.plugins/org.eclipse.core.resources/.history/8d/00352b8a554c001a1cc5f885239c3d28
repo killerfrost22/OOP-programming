@@ -1,0 +1,110 @@
+package tests;
+
+import org.junit.*;
+
+import quuly.Quuly;
+
+import static org.junit.Assert.*;
+
+import java.util.Arrays;
+
+public class StudentTests {
+
+//	  @Test//1
+//	  public void testPublic4() {
+//		    Quuly quuly= new Quuly(5);
+//
+//		    quuly.addStudent("Ginny Giraffe", 4444);
+//		    quuly.addStudent("Dolly Dolphin", 3333);
+//		    quuly.addStudent("Ellie Elephant", 2222);
+//		    quuly.addStudent("Freddy Frog", 3333);
+//		 
+//		    // this one should fail; note that Freddy Frog's name is different, but
+//		    // his ID is the same as an existing student's
+//		    System.out.print(quuly.numStudents());
+//		    //assertFalse(quuly.addStudent("Freddy Frog", 3333));
+//		   // System.out.print(quuly.numStudents());
+//		   // assertEquals(3, quuly.numStudents());
+//		  }
+//	 @Test public void testPublic5() {
+//		    Quuly quuly= new Quuly(8);
+//
+//		    assertTrue(quuly.addStudent("Dolly Dolphin", 3210));
+//		    assertTrue(quuly.addStudent("Laura Llama", 1234));
+//		    assertTrue(quuly.addStudent("Rita Cheetah", 6789));
+//
+//		    quuly.addStudent("Laura Llama", 2345);
+//		    assertTrue(quuly.addStudent("Laura Llama", 3456));
+//		     System.out.print(quuly.numStudents());
+//		   // assertEquals(5, quuly.numStudents());
+//		  }	 
+// Tests calling addStudentToQueue() and queueSize().
+//	  @Test public void testPublic6() {
+//		  Quuly quuly= new Quuly(7);
+//
+//		    quuly.addStudent("Dolly Dolphin", 3333);//1
+//		    quuly.addStudent("Ginny Giraffe", 4444);//2
+//		    quuly.addStudent("Wally Walrus", 8888);//3
+//		    quuly.addStudent("Ellie Elephant", 9999);//4
+//		    quuly.addStudent("Kathy Kangaroo", 1243);//5
+//		    quuly.addStudent("Myrtle Turtle", 9638);//6
+//		    quuly.addStudent("Squidley Squid", 9174);//7
+//		    quuly.addStudent("Sally Salamander", 6513);//8
+//		    quuly.addStudent("Coby Cobra", 2254);//9
+//		    quuly.addStudent("Oscar Ostrich", 3232);//10
+//		    quuly.addStudent("Robyn Robin", 4674);//11
+//		    quuly.addStudent("Hedwig Hedgehog", 6716);//11
+//		    quuly.addStudent("Amy Amoeba", 8234);//12
+//
+//		    quuly.addStudentToQueue(4444);//1
+//		    quuly.addStudentToQueue(8888);//2
+//		    quuly.addStudentToQueue(6513);//3
+//		    quuly.addStudentToQueue(2254);//4
+//		    quuly.addStudentToQueue(4674);//5
+//		    quuly.addStudentToQueue(8234);//6
+//		    quuly.addStudentToQueue(1243);//7
+//		    quuly.addStudentToQueue(9638);//8
+//		    quuly.addStudentToQueue(3333);//9
+//		    quuly.addStudentToQueue(9174);//10
+//
+//		    System.out.print(quuly.queueSize());
+//	  //  assertEquals(10, quuly.queueSize());
+//	  }
+//	@Test public void testPublic8() {
+//	    Quuly quuly= TestData.exampleQuuly();
+//	    quuly.isInQueue(6513);
+//	    assertTrue(quuly.isInQueue(6513));
+//	    assertTrue(quuly.isInQueue(3333));
+//	    assertTrue(quuly.isInQueue(8234));
+//	    assertTrue(quuly.isInQueue(4444));
+//	    assertTrue(quuly.isInQueue(9174));
+//
+//	    assertFalse(quuly.isInQueue(6716));
+//	  }
+//	@Test public void testPublic9() {
+//		Quuly quuly= TestData.exampleQuuly();
+//	    for (String name : Arrays.asList("Dolly Dolphin", "Ginny Giraffe",
+//	                                     "Wally Walrus", "Kathy Kangaroo",
+//	                                     "Myrtle Turtle", "Squidley Squid",
+//	                                     "Sally Salamander", "Coby Cobra",
+//	                                     "Robyn Robin", "Amy Amoeba"))
+//	      assertEquals(1, quuly.isInQueue(name));
+//	  }
+	 @Test public void testPublic10() {
+		    Quuly quuly= new Quuly(8);
+
+		    assertTrue(quuly.addStudent("Dolly Dolphin", 3210));
+		    assertTrue(quuly.addStudent("Laura Llama", 1234));
+		    assertTrue(quuly.addStudent("Laura Llama", 2345));
+		    assertTrue(quuly.addStudent("Rita Cheetah", 6789));
+		    assertTrue(quuly.addStudent("Laura Llama", 3456));
+		    assertTrue(quuly.addStudent("Rita Cheetah", 4343));
+
+		    for (Integer id : Arrays.asList(3210, 1234, 2345, 6789, 3456, 4343))
+		      quuly.addStudentToQueue(id);
+
+		    assertEquals(1, quuly.isInQueue("Dolly Dolphin"));
+		    assertEquals(2, quuly.isInQueue("Rita Cheetah"));
+//		    assertEquals(3, quuly.isInQueue("Laura Llama"));
+		  }
+}

@@ -1,0 +1,156 @@
+package quuly;
+
+import java.util.ArrayList;
+
+public class Quuly {
+	int maxVisits;
+	
+	ArrayList<que> tsetR;
+	ArrayList<que> InQ;
+	int countVisit = 0;
+ //	ArrayList 
+  public Quuly(int maxVisits) {
+	  this.maxVisits = maxVisits;
+	  tsetR = new ArrayList<que>();
+	  InQ = new ArrayList<que>();
+	  
+	  if(maxVisits == 0 || maxVisits <= 0) {
+	  this.maxVisits =1;
+	  }
+  }
+
+  public boolean addStudent(String newStudentName, Integer newStudentID) {
+	  if (newStudentName == null || newStudentName.equals("")) {
+			// empty string
+			return false;
+	  }if (findId(newStudentID) == false) {
+			tsetR.add(new que(newStudentName, newStudentID));
+			return true;
+	  }else {
+		  return false;
+	  }                                                    
+	}
+  
+
+  private boolean findId(int id) {
+	  for (que nextStudent : tsetR) {
+			if (nextStudent.newStudentID == id) {
+				return true; 
+			}
+		
+	  		}
+	  		return false;
+	  		
+  }
+  private boolean findIdQ(int id) {
+	  for (que nextStudent : InQ) {
+			if (nextStudent.newStudentID == id) {
+				return true; 
+			}
+		
+	  		}
+	  		return false;
+	  		
+  }
+  //Aux
+  public int numStudents() {
+	  return this.tsetR.size();
+  }
+
+  public boolean addStudentToQueue(Integer id) {
+	  
+	  if(id == null || this.tsetR == null|| InQ == null) {
+		  return false;
+	  }if(findIdQ(id) == true){
+		  return false;
+	  }if (findIdQ(id) == false) {
+		  for(que studentName: tsetR){
+			  if(studentName.newStudentID() == id) {
+				  InQ.add(studentName);
+				  return true;
+			  }
+		  }
+			
+	  }else {
+		  return false;	  
+	  }
+	return false;
+	
+	
+  }
+
+  public int queueSize() {
+	  int sum = 0;
+			for (int i = 0; i< InQ.size(); i++) {
+				sum += 1;
+			}
+			return sum;
+  }
+
+  public boolean isInQueue(Integer id) {
+  //if(InQ.findIdQ(id) == true) { Question here
+	  for(que studentName: InQ){
+		  if(studentName.newStudentID() == id) {
+			  InQ.add(studentName);
+			  return true;
+		  }
+	  }
+	return false;
+  }
+  
+private boolean findNameInQ(String name) {
+  for (que nextStudent : InQ) {
+		if (nextStudent.newStudentName.equals(name)) {
+			return true;
+		}
+	
+  		}
+  		return false;
+  		
+}
+  public int isInQueue(String name) {
+	 
+    if(tsetR == null || name == null || findNameInQ(name) == false) {
+    	countVisit =0;
+    }if(findNameInQ(name) == true) {
+    	countVisit++;
+    }
+	return countVisit;
+    
+  }
+
+  public boolean helpNextStudent() {
+	 
+  }
+
+  public int numStudentsHelped() {
+    return this.count;
+  }
+
+  public int numTimesHelped(Integer id) {
+    throw new UnsupportedOperationException("You must write this method.");
+  }
+
+  public boolean dropStudent(Integer id) {
+	  String thisStudent = findName(id);
+		if (thisStudent == null) {
+			
+			return false;
+		} else if (thisStudent.NO_submit == 1) {
+			// only submit once
+			for (int i : thisStudent.bestSubmit) {
+				// find for test not pass
+				if (i <= 0) {
+					// fail exist
+					return false;
+				}
+			}
+			// all passed
+			return true;
+		}
+		// for other conditions
+		return false;
+  }
+
+
+}

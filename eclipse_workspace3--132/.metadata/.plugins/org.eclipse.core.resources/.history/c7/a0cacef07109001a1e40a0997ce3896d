@@ -1,0 +1,10 @@
+package processor;
+
+public class OrdersProcessor {
+
+	public static void main(Object object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

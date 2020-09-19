@@ -1,0 +1,116 @@
+package blackjack;
+import java.util.*;
+
+public class Blackjack implements BlackjackEngine {
+	
+	/**
+	 * Constructor you must provide.  Initializes the player's account 
+	 * to 200 and the initial bet to 5.  Feel free to initialize any other
+	 * fields. Keep in mind that the constructor does not define the 
+	 * deck(s) of cards.
+	 * @param randomGenerator
+	 * @param numberOfDecks
+	 */
+	private int account=0;
+	private int iniBetAmount;
+	
+	private int gameStatus;
+	private ArrayList<Card> cardDeck,playerCards,dealerCards;
+	private Random randomGenerator;
+	private int numberOfDecks;
+	
+	
+	public Blackjack(Random randomGenerator, int numberOfDecks) {
+	    this.randomGenerator = randomGenerator;
+	    this.numberOfDecks = numberOfDecks;
+	    account = 200;
+	    iniBetAmount = 5;  
+	}
+	
+	public int getNumberOfDecks() {
+		return account;
+		
+	}
+	
+	public void createAndShuffleGameDeck() {
+		//You must use the shuffle method of the java.util.
+		//Collections class to perform the data shuffling. 
+		//You must use the shuffle method that takes a list followed by a Random object.  
+		//Notice that the list parameter is defined as List<?>.  
+		//You can ignore that definition.  
+		//The method will work with ArrayList objects.
+		
+		cardDeck = new ArrayList<Card>();
+		for (int i = 0; i < numberOfDecks; i++) {
+			for (CardSuit suit:CardSuit.values()) {
+				for (CardValue value:CardValue.values()) {
+					cardDeck.add(new Card(value, suit));
+				}
+			}
+		}
+		Collections.shuffle(cardDeck, randomGenerator);
+	}
+	
+	public Card[] getGameDeck() {
+		return cardDeck.toArray(new Card[cardDeck.size()]);
+	}
+	
+	public void deal() {	
+		throw new UnsupportedOperationException("You must implement this method.");
+	}
+		
+	public Card[] getDealerCards() {
+		throw new UnsupportedOperationException("You must implement this method.");
+	}
+
+	public int[] getDealerCardsTotal() {
+		throw new UnsupportedOperationException("You must implement this method.");
+	}
+
+	public int getDealerCardsEvaluation() {
+		throw new UnsupportedOperationException("You must implement this method.");
+	}
+	
+	public Card[] getPlayerCards() {
+		throw new UnsupportedOperationException("You must implement this method.");
+	}
+	
+	public int[] getPlayerCardsTotal() {
+		throw new UnsupportedOperationException("You must implement this method.");
+	}
+		
+	public int getPlayerCardsEvaluation() {
+		throw new UnsupportedOperationException("You must implement this method.");
+	}
+	
+	public void playerHit() {
+		throw new UnsupportedOperationException("You must implement this method.");
+	}
+	
+	public void playerStand() {
+		
+		dealerCards.get(0).setFaceUp();
+	}
+	
+	public int getGameStatus() {
+		
+		return gameStatus;
+	}
+		
+	public void setBetAmount(int amount) {
+		this.iniBetAmount = amount;
+	}
+	
+	public int getBetAmount() {
+		return iniBetAmount;
+	}
+	
+	public void setAccountAmount(int amount) {	
+		this.account = amount;
+	}
+	
+	public int getAccountAmount() {
+		return account;
+	}
+	
+}

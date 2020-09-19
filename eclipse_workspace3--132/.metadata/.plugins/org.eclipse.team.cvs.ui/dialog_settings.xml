@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.team.ccvs.ui.RepositoriesView">
+		<item key="SelectedWorkingSet" value=""/>
+		<item key="selectedOrderBy" value="0"/>
+		<item key="selectedSortingOrder" value="true"/>
+		<item key="filterShowModules" value=""/>
+	</section>
+	<section name="NewLocationWizard">
+		<item key="ConfigurationWizardMainPage.STORE_DONT_VALIDATE_ID" value="false"/>
+		<list key="ConfigurationWizardMainPage.STORE_USERNAME_ID">
+			<item value="josephao"/>
+		</list>
+		<list key="ConfigurationWizardMainPage.STORE_HOSTNAME_ID">
+			<item value="grace.umd.edu"/>
+		</list>
+		<list key="ConfigurationWizardMainPage.STORE_PATH_ID">
+			<item value="/afs/glue/class/fall2019/cmsc/132/0304/student/josephao"/>
+			<item value="/afs/glue/fall2019/cmsc/132/0304/student/josephao"/>
+			<item value="/afs/glue/class/fall2016/cmsc/132/0304/student/josephao"/>
+		</list>
+	</section>
+</section>

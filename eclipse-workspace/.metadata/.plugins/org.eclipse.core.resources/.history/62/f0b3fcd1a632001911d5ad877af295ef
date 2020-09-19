@@ -1,0 +1,260 @@
+package studentCode;
+import java.awt.Color;
+
+import GridTools.MyGrid;
+
+
+public class FlagMaker {
+	static int maxRow;
+	static int maxCol;
+	/* Draws a single flag as indicated by the second parameter */
+	/* into the grid passed as the first parameter */
+	public static void drawFlag(MyGrid grid, int countryCode) {
+	
+		
+		
+	// STUDENT CODE GOES HERE
+	switch(countryCode) {
+	case 1 :
+			maxRow = grid.getHt()-1;
+			maxCol = grid.getWd()-1;
+			
+			maxCol = 2* maxRow;
+		
+			boolean even = (grid.getHt() % 2 == 0);
+			if(even == true){
+				for(int row = 0; row < grid.getHt()/2; row++)
+					for (int col = 0; col < maxCol; col++) {
+						grid.setColor(row , col, Color.red);
+					}for(int row = grid.getHt()/2; row<maxRow; row++) 
+						for (int col = 0; col < maxCol;col++) {
+							grid.setColor(row, col, Color.white);
+						}	
+			}else {
+		//false flag
+				for(int row = 0; row <= maxRow; row++) {
+					for(int col = 0; col <= maxCol; col++) {
+						grid.setColor(row, col, Color.WHITE);
+					}
+				}
+				grid.setColor(0, 0, Color.RED);
+				grid.setColor(0, maxCol, Color.YELLOW);
+				grid.setColor(maxRow, 0, Color.BLUE);
+				grid.setColor(maxRow, maxCol, Color.GREEN);
+			}
+		
+			break;
+		
+		
+		case 2 : 
+		
+			maxRow = grid.getHt()-1;
+			maxCol = grid.getWd()-1;
+			
+		if(grid.getHt() % 3 == 0){
+			int changeColor = grid.getHt()/3;
+			int colorYellow = changeColor-1;
+			int colorGreen = (changeColor*2)-1;
+			
+			
+		for(int row = 0; row <= colorYellow; row++) {
+			for (int col = 0; col <= maxCol; col++) {
+				grid.setColor(row , col, Color.yellow);
+			}
+		}
+		for(int row = colorYellow+1; row<=colorGreen; row++) {
+			for (int col = 0; col <= maxCol;col++) {
+				grid.setColor(row, col, Color.green);
+			}
+		
+		}for(int row = colorGreen+1; row<= maxRow; row++) 
+			for (int col = 0; col <= maxCol;col++) {
+				grid.setColor(row, col, Color.red);
+		
+				}
+		}else {
+			//false flag
+			for(int row = 0; row <= maxRow; row++) {
+				for(int col = 0; col <= maxCol; col++) {
+					grid.setColor(row, col, Color.WHITE);
+				}
+			}
+			grid.setColor(0, 0, Color.RED);
+			grid.setColor(0, maxCol, Color.YELLOW);
+			grid.setColor(maxRow, 0, Color.BLUE);
+			grid.setColor(maxRow, maxCol, Color.GREEN);
+		}
+		
+	break;
+		case 3:
+		//Rwanda
+		maxRow = grid.getHt() - 1;
+		maxCol = grid.getWd() - 1;
+		
+		//draw flag
+		if(grid.getHt() % 4 == 0) {	//test the height
+			//correct flag
+			int changeColor = grid.getHt() / 4;
+			int colorBlue = (changeColor * 2) - 1;
+			int colorYellow = (changeColor * 3) - 1;
+			
+			for(int row = 0; row <= colorBlue; row++) {
+				for(int col = 0; col <= maxCol; col ++) {
+					grid.setColor(row,col,Color.BLUE);
+				}
+			}
+			
+			for(int row = colorBlue + 1; row <= colorYellow; row++) {
+				for(int col = 0; col <= maxCol; col ++) {
+					grid.setColor(row,col,Color.YELLOW);
+				}
+			}
+			
+			for(int row = colorYellow + 1; row <= maxRow; row++) {
+				for(int col = 0; col <= maxCol; col ++) {
+					grid.setColor(row,col,Color.GREEN);
+				}
+			}
+		}else {
+			for(int row = 0; row <= maxRow; row++) {
+				for(int col = 0; col <= maxCol; col++) {
+					grid.setColor(row, col, Color.WHITE);
+				}
+			}
+			grid.setColor(0, 0, Color.RED);
+			grid.setColor(0, maxCol, Color.YELLOW);
+			grid.setColor(maxRow, 0, Color.BLUE);
+			grid.setColor(maxRow, maxCol, Color.GREEN);
+		}
+		
+	break;
+		case 4:
+			maxRow = grid.getHt()-1;
+			maxCol = grid.getWd()-1;
+		int changeColor = grid.getWd()/2;
+		
+		for(int col = 0; col <=changeColor; col ++) {
+			for (int row = 0; row <= maxRow; row ++)
+				grid.setColor(row, col, Color.white);
+		}
+		for(int col = changeColor; col <= maxCol; col ++)
+			for (int row = 0; row <= maxRow; row++) {
+				grid.setColor(row, col, Color.red);
+			}
+	break;
+		case 5:
+			maxRow = grid.getHt()-1;
+			maxCol = grid.getWd()-1;
+		int changeColor1 = grid.getWd()/3;
+		int changeRed = changeColor1-1;
+		int changeGreen = changeColor1*2 -1;
+		
+		if(grid.getHt() % 3 == 0 ) {
+			for(int col = 0; col <=changeColor1; col ++) {
+				for (int row = 0; row <= maxRow; row ++)
+				grid.setColor(row, col, Color.black);
+			}
+			for(int col = changeRed+1; col <= changeGreen; col ++)
+				for (int row = 0; row <= maxRow; row++) {
+				grid.setColor(row, col, Color.red);
+			}
+			for(int col = changeGreen+1; col <= maxCol; col ++) {
+				for(int row = 0; row <= maxRow; row ++)
+				grid.setColor(row, col, Color.green);
+			}
+	
+		}else {
+			for(int row = 0; row <= maxRow; row++) {
+				for(int col = 0; col <= maxCol; col++) {
+					grid.setColor(row, col, Color.WHITE);
+				}
+			}
+			grid.setColor(0, 0, Color.RED);
+			grid.setColor(0, maxCol, Color.YELLOW);
+			grid.setColor(maxRow, 0, Color.BLUE);
+			grid.setColor(maxRow, maxCol, Color.GREEN);
+		}
+		
+	break;
+		case 6:
+			maxRow = grid.getHt();
+			maxCol = grid.getWd();
+		//Eritrea
+		//set the whole pic to red 
+			for(int row = 0; row <= maxRow -1; row++) {
+				for( int col = 0 ; col <= maxCol -1; col ++) {
+					grid.setColor(row, col, Color.red);
+				}
+			}
+		//add color green upper right 		
+			for (int row = 1; maxCol>=(4*row); row++) {
+				for(int col = 4*row; col <= maxCol;col++)
+					grid.setColor(row -1, col, Color.green);
+				}
+			}
+		//blue
+			for(int count = 1; grid.getWd() - (4 * count) >= 0; count++) {	
+		//count is the row number
+				for(int col = 4 * count; col <= maxCol; col++) {
+					grid.setColor(maxRow - count + 1, col, Color.BLUE);
+		}
+	}
+
+	break;
+		case 7:
+		//Macedonia
+		maxRow = grid.getHt() - 1;
+		maxCol = grid.getWd() - 1;
+		
+		//check valid
+		if(grid.getHt() % 2 == 1 || grid.getHt() < 8) {
+			for(int row = 0; row <= maxRow; row++) {
+				for(int col = 0; col <= maxCol; col++) {
+					grid.setColor(row, col, Color.WHITE);
+				}
+			}
+			grid.setColor(0, 0, Color.RED);
+			grid.setColor(0, maxCol, Color.YELLOW);
+			grid.setColor(maxRow, 0, Color.BLUE);
+			grid.setColor(maxRow, maxCol, Color.GREEN);
+		
+		}else {
+			
+			//set the background color to red
+			for(int row = 0; row <= maxRow; row++) {
+				for(int col = 0; col <= maxCol; col++) {
+					grid.setColor(row, col, Color.RED);
+				}
+			}
+			//center two rows
+			for(int row = (grid.getHt()/2)-1; row<= grid.getHt(); row++	) {
+				for(int col = 0; col <= maxCol; col++)
+					grid.setColor(row, col, Color.YELLOW);
+			}
+		}
+			//two cols in the mid
+			for(int row = 0; row <= grid.getHt(); row++) {
+				for (int col = (grid.getWd()-1); col<=grid.getHt(); col ++)
+					grid.setColor(row,col,Color.YELLOW);
+			}
+		
+			//draw the rectangular thing in the mid
+			for(int row = (grid.getHt()/2)-2; row <=grid.getHt(); row ++) {
+				for(int col = grid.getWd()/2-3; row <= grid.getWd(); col ++)
+				{
+					
+				
+			//draw "X" signs
+		
+			
+
+
+
+}
+	}
+		
+	}
+		
+}
+
+

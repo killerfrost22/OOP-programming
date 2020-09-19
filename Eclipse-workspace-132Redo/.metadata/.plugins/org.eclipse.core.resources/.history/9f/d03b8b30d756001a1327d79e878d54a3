@@ -1,0 +1,64 @@
+package employeeManager;
+
+public class Manager {
+	String lastName, firstName, hireType;
+	double salary, workCount;
+	
+  public Manager(String lastName, String firstName) {
+		this.lastName = lastName;
+		this.firstName = firstName;
+	}
+
+public static Company createAccount(String name) {
+	Company test = new Company(name);
+	  
+	  if(name == null|| name == "") {
+		  return null;
+	  }else {
+		  test.name = name;
+	  }
+	return test;
+  }
+
+  public static Company createAccount(String name, int maxEmployees) {
+	Company test = new Company(name, maxEmployees);
+	  if(name == null|| name == "" || maxEmployees <= 0 ) {
+		  return null;
+	  }else {
+		  test.name =name;
+		  test.maxEmployee = maxEmployees;
+	  }
+	return test;
+  }
+
+
+
+  public double gradeTime(int exam) {
+	return 0;
+  }
+  public double getSalary() {
+		return this.salary;
+	}	
+  	public int compare(Company other) {
+	if (this.lastName.compareTo(other.lastName) > 0) {
+		// this lastname is after the param's
+		return -1;
+	} else if (this.lastName.compareTo(other.lastName) < 0) {
+		// this lastname is before the param's
+		return 1;
+	} else {
+		// same 1st char of lastname
+		// compare the first name
+		if (this.firstName.compareTo(other.firstName) > 0) {
+			// this first name is after the param's
+			return -1;
+		} else if (this.firstName.compareTo(other.firstName) < 0) {
+			// this first name is before the param's
+			return 1;
+		} else {
+			return 0;
+			// same
+		}
+	}
+  	}
+}

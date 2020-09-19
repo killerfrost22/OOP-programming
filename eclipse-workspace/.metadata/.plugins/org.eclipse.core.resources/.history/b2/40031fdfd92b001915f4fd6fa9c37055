@@ -1,0 +1,24 @@
+package lecture0206;
+import java.util.Scanner;
+
+public class Initialization3 {
+
+	public static void main(String[] args) {
+		int x;
+		boolean foundDog = false;   // this is an example of a "flag"
+		Scanner scanner = new Scanner(System.in);
+		String s = scanner.next();
+
+		if (s.equals("dog")) {
+			x = 10;
+			foundDog = true;
+		}
+
+		if (!foundDog) {
+			x = 12;
+		}
+		
+		System.out.println("x is " + x);
+		scanner.close();
+	}
+}

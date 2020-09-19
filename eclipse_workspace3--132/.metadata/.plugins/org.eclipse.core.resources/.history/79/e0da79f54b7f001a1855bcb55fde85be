@@ -1,0 +1,108 @@
+package polymorphicTree;
+
+//Haoyu Cheng
+//CMSC132
+
+import java.util.List;
+
+@SuppressWarnings({ "unchecked", "rawtypes" })
+public class EmptyTree<K extends Comparable<K>, V> extends Tree<K, V> {
+
+	public static EmptyTree getInstance() {
+		//get a instance of the EmptyTree
+		return new EmptyTree();
+	}
+
+	public NonEmptyTree<K, V> addKeyAndValue(K keyIn, V valueIn) throws IllegalArgumentException {
+		// add a new node into the BST
+		// return a new NonEmptyTree node with two EmptyTree children
+		if (keyIn == null || valueIn == null) {
+			throw new IllegalArgumentException();
+		} else {
+			NonEmptyTree<K, V> temp = new NonEmptyTree(keyIn, valueIn, this, this);
+			temp.root = temp;
+			temp.leaf = this;
+			return temp;
+		}
+	}
+
+	public int size() {
+		// get the size of the tree
+		// return 0 here because EmptyTree doesn't count
+		return 0;
+	}
+
+	public V getValueForKey(K keyIn) throws IllegalArgumentException {
+		// get the paired value for the key in the param
+		// return null here because
+		// when reach here means this key is not exist
+
+		if (keyIn == null) {
+			throw new IllegalArgumentException();
+		} else {
+			return null;
+		}
+	}
+
+	public int treeHeight() {
+		// get the height of the current BST
+		// return -1 here because
+		// for the empty tree the height is -1\
+		return -1;
+	}
+
+	public boolean pathFromRoot(K keyIn, List<K> keyPath) throws IllegalArgumentException {
+		// return the path from the root to the key
+		// throws exception when
+		// null existed in the parameter
+		// program will reach here when the keyt is no exist
+		// so return false;
+		if (keyIn == null || keyPath == null) {
+			throw new IllegalArgumentException();
+		} else {
+			return false;
+		}
+	}
+
+	public K max() throws EmptyTreeException {
+		// get the max key in the BST
+		// for EmptyTree
+		// just throws an EmptyTreeException
+		throw new EmptyTreeException();
+	}
+
+	public K min() throws EmptyTreeException {
+		// get the min key in the BST
+		// for EmptyTree
+		// just throws an EmptyTreeException
+		throw new EmptyTreeException();
+	}
+
+	public Tree<K, V> removeKeyAndValue(K keyIn) {
+		// remove the key and its paired value from the BST
+		// will reach here if key is not exist
+		// throws exception when
+		// null existed in the parameter
+		if (keyIn == null) {
+			throw new IllegalArgumentException();
+		} else {
+			return this;
+		}
+	}
+
+	@Override
+	public String toString() {
+		//just return a empty string for EmptyTree
+		return "";
+	}
+
+	@Override
+	protected Tree<K, V> getTreeForKey(K keyIn) {
+		//this protected method is to 
+		//search for the tree obj with the key
+		
+		//will reach here is not exist
+		return null;
+	}
+
+}

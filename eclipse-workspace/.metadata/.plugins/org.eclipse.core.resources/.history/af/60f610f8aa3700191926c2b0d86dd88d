@@ -1,0 +1,22 @@
+package worksheet2Review;
+
+import java.util.Scanner;
+
+public class triangle11 {
+
+	public static void main(String[] args) {
+		Scanner type = new Scanner(System.in);
+		System.out.print("Enter Size:");
+		int size = type.nextInt();
+		System.out.print("Enter Character: ");
+		char symbol = type.next().charAt(0);
+		
+		for(int row = size; row> 0 ; row --) {
+			for (int col = row; col>0; col--) {
+				System.out.print(symbol);
+			}
+			System.out.print("\n");
+		}
+	}
+
+}

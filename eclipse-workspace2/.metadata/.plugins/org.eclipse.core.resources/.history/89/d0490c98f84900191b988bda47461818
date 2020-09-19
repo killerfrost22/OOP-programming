@@ -1,0 +1,193 @@
+package poker;
+
+import java.util.Arrays;
+
+public class PokerHandEvaluator {
+	
+	public static boolean hasPair(Card[] cards) {
+		//init
+		boolean result = false;
+		int value;
+		
+		//compare
+		for(int i = 0; i < cards.length; i++) {
+			value = cards[i].getValue();
+			for(int index = i + 1; index < cards.length; index++) {
+				if(value == cards[index].getValue()) {
+					result = true;
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	public static boolean hasTwoPair(Card[] cards) {
+		//init
+		boolean result = false;
+		int pairCount = 0;
+		int valueCount = 0;
+		
+		//compare
+		for(int i = 1; i <= 13; i++) {
+			//loop through value
+			for(int index = 0; index < cards.length; index++) {
+				//loop through cards
+				if(i == cards[index].getValue()) {
+					valueCount++;
+				}
+			}
+			if(valueCount >= 2) {
+				pairCount++;
+			}
+			valueCount = 0;
+		}
+		if(pairCount >= 2) {
+			result = true;
+		}
+		return result;
+	}
+	
+	public static boolean hasThreeOfAKind(Card[] cards) {
+		// init
+		int valueCount = 0;
+
+		// compare
+		for (int i = 1; i <= 13; i++) {
+			// loop through value
+			for (int index = 0; index < cards.length; index++) {
+				// loop through cards
+				if (i == cards[index].getValue()) {
+					valueCount++;
+				}
+			}
+			if (valueCount >= 3) {
+				return true;
+			}
+			valueCount = 0;
+		}
+		
+		return false;
+	}
+	
+	public static boolean hasStraight(Card [] cards) {
+		//init
+		int str = 0;
+		int[] value = new int[cards.length];
+		for(int i = 0; i < cards.length; i++) {
+			value[i] = cards[i].getValue();
+		}
+		Arrays.sort(value);
+		
+		//find straight
+		for(int i = 1; i < value.length; i++) {
+			if(value[i] == value[i - 1] + 1) {
+				str++;
+			}else {
+				str = 0;
+			}
+		}
+		
+		//return
+		if(str >= 4) {
+			return true;
+		}
+		return false;
+		
+	}
+	
+	public static boolean hasFlush(Card[] cards) {
+		// init
+		int suitCount = 0;
+		int[] suit = new int[cards.length];
+		for (int i = 0; i < cards.length; i++) {
+			suit[i] = cards[i].getSuit();
+		}
+		
+		for(int st = 0; st <= 3; st++) {
+			//suit loop
+			for(int i = 0; i < suit.length; i++) {
+				//cards loop
+				if(st == suit[i]) {
+					suitCount++;
+				}
+			}
+			if(suitCount >= 5) {
+				return true;
+			}
+		}
+		
+		return false;		
+	}
+	
+	public static boolean hasFullHouse(Card[] cards) {
+		// init
+		boolean countThree = false;
+		boolean countTwo = false;
+		int valueThree, ctThree, ctTwo;
+		int str = 0;
+		int[] value = new int[cards.length];
+		for (int i = 0; i < cards.length; i++) {
+			value[i] = cards[i].getValue();
+		}
+		
+		//find three
+		ctThree = 0;
+		for(int i = 1; i <= 13; i++) {
+			//loop value
+			for(int index = 0; index <= cards.length; index++) {
+				//loop cards
+				if(i == cards[index].getValue()) {
+					ctThree++;
+				}
+			}
+			if(ctThree >= 3) {
+				countThree = true;
+			}
+			ctThree = 0;
+		}
+		//find two
+		ctTwo = 0;
+		for(int i = 1; i <= 13; i++) {
+			//loop value
+			for(int index = 0; index <= cards.length; index++) {
+				//loop cards
+				if(i == cards[index].getValue()) {
+					ctTwo++;
+				}
+			}
+			if(ctTwo >= 2) {
+				countTwo = true;
+				//get value
+			}
+			ctTwo = 0;
+		}
+	}
+	
+	public static boolean hasFourOfAKind(Card[] cards) {
+		// init
+		int valueCount = 0;
+
+		// compare
+		for (int i = 1; i <= 13; i++) {
+			// loop through value
+			for (int index = 0; index < cards.length; index++) {
+				// loop through cards
+				if (i == cards[index].getValue()) {
+					valueCount++;
+				}
+			}
+			if (valueCount == 4) {
+				return true;
+			}
+			valueCount = 0;
+		}
+
+		return false;
+	}
+
+	public static boolean hasStraightFlush(Card[] cards) {
+		/* Remove this comment and implement the method */
+	}
+}
+

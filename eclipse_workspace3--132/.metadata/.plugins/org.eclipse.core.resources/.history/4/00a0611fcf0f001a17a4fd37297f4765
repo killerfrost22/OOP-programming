@@ -1,0 +1,150 @@
+package processor;
+
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeMap;
+
+public class OrdersProcessor {
+	
+	public static void main(String[] args) {
+		//initializeng variables
+		Object itemLock = new Object();	
+		Scanner io = new Scanner(System.in);
+		allOrders totals = new allOrders();
+		
+		//sets the information
+		itemData items = new itemData(getDataFileName(io));
+		boolean isMultiThread = setMultiThread(io);
+		int numOrders = setNumberOfOrders(io);
+		String orderBaseFileName = setBaseFileName(io);
+		String resultFileName = setResultFileName(io);
+		
+		//creates threads and orders
+		ArrayList<Thread> threads = new ArrayList<>();
+		ArrayList<order> orders = new ArrayList<>();
+
+		//adds the orders
+		for(int i = 1; i <= numOrders; i++) {
+			order o = new order(orderBaseFileName + i + ".txt", itemLock, totals, items);
+			orders.add(o);
+			threads.add(new Thread(o));
+		}
+		
+		long time;		//sets time variable to time
+		
+		if(isMultiThread) {	//if multithread use threads
+			time = System.currentTimeMillis();
+			executeThreads(threads);
+			time = System.currentTimeMillis() - time;
+		} else {		//if non multithread run them all in order
+			time = System.currentTimeMillis();
+			for(Thread t: threads) {
+				t.run();
+			}
+			time = System.currentTimeMillis() - time;
+		}
+		
+		//output and close io
+		System.out.println("Processing time (msec): " + time);
+		writeToFile(orders,totals,resultFileName,items);
+		io.close();
+	}
+	
+	/**
+	 * method to write the output to a file
+	 * @param orders
+	 */
+	private static void writeToFile(ArrayList<order> orders, allOrders allOrders, String resultFileName,itemData items) {
+		String output = "";
+		
+		for(order o: orders) {
+			output += o.toString() + "\n";
+		}
+		output += getSummaryString(allOrders,items) + "\n";
+		fileIO.write(output, resultFileName);
+	}
+	
+	/**
+	 * Method to set the multi threading or not
+	 */
+	private static boolean setMultiThread(Scanner io) {
+		System.out.print("Enter 'y' for multiple threads, any other character otherwise: ");
+		String y = io.nextLine();
+		return y.equals("y");
+	}
+	
+	/**
+	 * gets the data file name
+	 * @return
+	 */
+	private static String getDataFileName(Scanner io) {
+		System.out.print("Enter item's data file name: ");
+		return(io.nextLine());
+	}
+	
+	/**
+	 * method to set the results file name
+	 */
+	private static String setResultFileName(Scanner io) {
+		System.out.print("Enter result's file name: ");
+		return io.nextLine();
+	}
+	
+	/**
+	 * method to set the number of orders
+	 */
+	private static int setNumberOfOrders(Scanner io){
+		System.out.print("Enter number of orders to process: ");
+		return Integer.parseInt(io.nextLine());
+	}
+	
+	/**
+	 * method to set the base file name
+	 */
+	private static String setBaseFileName(Scanner io) {
+		System.out.print("Enter order's base filename: ");
+		return io.nextLine();
+	}
+	
+	/**
+	 * Method to build the summary string
+	 * @return
+	 */
+	private static String getSummaryString(allOrders totals, itemData items) {
+		String str = "***** Summary of all orders *****" + "\n";
+		Set<String> itemSet = items.getItemMap().keySet();
+		
+		for(String s: itemSet) {
+			str += "Summary - Item's name: " + s
+					+ ", Cost per item: " + NumberFormat.getCurrencyInstance().format(items.getCost(s)) 
+					+ ", Number sold: " + totals.getTotals().get(s) 
+					+ ", Item's Total: ";
+			
+			double itemTotal = totals.getTotals().get(s) * items.getCost(s);
+			str += NumberFormat.getCurrencyInstance().format(itemTotal) + "\n";
+			
+		}
+		str += "Summary Grand Total: " + NumberFormat.getCurrencyInstance().format(totals.getGrandTotal());
+		return str;
+	}
+	
+	/**
+	 * method to ecevute the threads with multi threading
+	 * @param threads
+	 */
+	private static void executeThreads(ArrayList<Thread> threads) {
+		for(Thread t: threads) {
+			t.start();
+		}
+		for(Thread t: threads) {
+			try {
+				t.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}
