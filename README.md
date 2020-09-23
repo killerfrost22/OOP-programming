@@ -1,2 +1,2 @@
 # OOP-programming
-JAva
+JaVa
